@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Bruno Ribeiro Silva</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --bg-light: #f8f9fa;
+            --bg-dark: #212529;
+            --text-light: #f8f9fa;
+            --text-dark: #343a40;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* --- Navigation --- */
+        .navbar {
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .navbar-brand {
+            font-weight: 700;
+        }
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1920x1080/212529/343a40?text=Code') no-repeat center center;
+            background-size: cover;
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        #hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+        }
+        #hero p {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+        .social-icons a {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* --- About Section --- */
+        #sobre .profile-icon {
+            font-size: 10rem;
+            color: var(--primary-color);
+        }
+
+        /* --- Skills Section --- */
+        .skill-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+        .skill-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .skill-card h4 {
+            margin-bottom: 15px;
+        }
+        .skill-card .badge {
+            margin: 3px;
+            padding: 6px 10px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        /* --- Experience & Education Timeline --- */
+        .timeline {
+            position: relative;
+            padding: 0;
+            list-style: none;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            margin-left: -1.5px;
+            background-color: var(--primary-color);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-item .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 25px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            left: 0;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            left: 55%;
+        }
+        .timeline-icon {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 4px solid var(--bg-light);
+            z-index: 1;
+        }
+        .timeline-content h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .timeline-content h5 {
+            color: var(--primary-color);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .timeline-content .date {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        /* --- Footer --- */
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        /* --- Scroll Animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 767.98px) {
+            #hero h1 { font-size: 2.5rem; }
+            #hero p { font-size: 1.2rem; }
+            .timeline::before { left: 25px; }
+            .timeline-item .timeline-content { width: 85%; left: 15% !important; text-align: left !important; }
+            .timeline-icon { left: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">Bruno R. Silva</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#habilidades">Habilidades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experiencia">Experiência</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#formacao">Formação</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 fade-in visible">
+                    <h1>Bruno Ribeiro Silva</h1>
+                    <p class="mb-4">Analista Técnico & Desenvolvedor de Sistemas</p>
+                    <div class="social-icons">
+                        <a href="mailto:ribeirosilva.bruno@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                        <a href="https://www.linkedin.com/in/bruno-ribeiro-silva-a996828b/" target="_blank"><i class="bi bi-linkedin"></i></a>
+                        <a href="http://lattes.cnpq.br/1735226777615513" target="_blank"><i class="bi bi-file-earmark-text-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- About Section -->
+        <section id="sobre" class="section">
+            <div class="container">
+                <div class="section-title"><h2>Sobre Mim</h2></div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center fade-in">
+                        <i class="bi bi-person-bounding-box profile-icon"></i>
+                    </div>
+                    <div class="col-md-8 fade-in">
+                        <p class="lead">Sou um profissional dedicado e focado nas atividades que desempenho, combinando uma sólida experiência em análise técnica e gerenciamento de plataformas EAD com uma paixão crescente por desenvolvimento de sistemas.</p>
+                        <p>Com um histórico que vai desde o ensino de programação e artes digitais até o trabalho técnico em ambientes corporativos e governamentais, busco constantemente novos desafios para aplicar e expandir minhas habilidades em tecnologia e design.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="habilidades" class="section bg-white">
+            <div class="container">
+                <div class="section-title"><h2>Habilidades</h2></div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="skill-card">
+                            <i class="bi bi-code-slash"></i>
+                            <h4>Desenvolvimento</h4>
+                            <span class="badge text-bg-primary">SQL (MySQL/MariaDB)</span>
+                            <span class="badge text-bg-primary">HTML</span>
+                            <span class="badge text-bg-primary">CSS</span>
+                            <span class="badge text-bg-primary">JavaScript</span>
+                            <span class="badge text-bg-primary">Python</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="skill-card">
+                            <i class="bi bi-gear-wide-connected"></i>
+                            <h4>DevOps & Infra</h4>
+                            <span class="badge text-bg-success">Linux</span>
+                            <span class="badge text-bg-success">Nginx e Apache</span>
+                            <span class="badge text-bg-success">Docker</span>
+                            <span class="badge text-bg-success">Shell e Bash</span>
+                            <span class="badge text-bg-success">Ansible</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="skill-card">
+                            <i class="bi bi-palette-fill"></i>
+                            <h4>Design & Outros</h4>
+                            <span class="badge text-bg-info">Moodle</span>
+                            <span class="badge text-bg-info">Pacote Adobe</span>
+                            <span class="badge text-bg-info">Blender</span>
+                            <span class="badge text-bg-info">Edição de Vídeo/Áudio</span>
+                            <span class="badge text-bg-info">LGPD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experiencia" class="section">
+            <div class="container">
+                <div class="section-title"><h2>Experiência Profissional</h2></div>
+                <ul class="timeline">
+                    <li class="timeline-item fade-in">
+                        <div class="timeline-icon"><i class="bi bi-building"></i></div>
+                        <div class="timeline-content">
+                            <h4>Analista Técnico</h4>
+                            <h5>Departamento de Educação e Cultura DEC - PMDF</h5>
+                            <span class="date">Julho 2020 - Atualmente</span>
+                            <p>Gerenciamento da plataforma Moodle para mais de 12 mil usuários, criação de cursos, suporte a docentes/discentes e testes de qualidade.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item fade-in">
+                        <div class="timeline-icon"><i class="bi bi-controller"></i></div>
+                        <div class="timeline-content">
+                            <h4>Artista Gráfico 3D</h4>
+                            <h5>Herolix Studios</h5>
+                            <span class="date">Fevereiro 2024 - Março 2025</span>
+                            <p>Modelador 3D e desenvolvedor de efeitos visuais para o jogo Kubberz, utilizando Blender e Unreal Engine.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item fade-in">
+                         <div class="timeline-icon"><i class="bi bi-easel"></i></div>
+                        <div class="timeline-content">
+                            <h4>Professor de Programação</h4>
+                            <h5>Happy Code</h5>
+                            <span class="date">Janeiro 2017 - Julho 2019</span>
+                            <p>Ensino de lógica de programação para crianças, adolescentes e terceira idade utilizando metodologias ativas.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="formacao" class="section bg-white">
+            <div class="container">
+                <div class="section-title"><h2>Formação Acadêmica</h2></div>
+                <ul class="timeline">
+                    <li class="timeline-item fade-in">
+                        <div class="timeline-icon"><i class="bi bi-pc-display"></i></div>
+                        <div class="timeline-content">
+                            <h4>Tecnólogo em Análise e Desenvolvimento de Sistemas</h4>
+                            <h5>Gran Centro Universitário</h5>
+                            <span class="date">Cursando - Previsão 2025</span>
+                        </div>
+                    </li>
+                    <li class="timeline-item fade-in">
+                        <div class="timeline-icon"><i class="bi bi-brush"></i></div>
+                        <div class="timeline-content">
+                            <h4>Pós-Graduação em Animação e Arte Digital</h4>
+                            <h5>Instituto de Ensino Superior de Brasília</h5>
+                            <span class="date">2016 - 2017</span>
+                        </div>
+                    </li>
+                    <li class="timeline-item fade-in">
+                        <div class="timeline-icon"><i class="bi bi-joystick"></i></div>
+                        <div class="timeline-content">
+                            <h4>Tecnólogo em Jogos Digitais</h4>
+                            <h5>Instituto de Ensino Superior de Brasília</h5>
+                            <span class="date">2012 - 2015</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer / Contact -->
+    <footer id="contato">
+        <div class="container">
+            <h3 class="mb-3">Vamos Conversar!</h3>
+            <p class="mb-4">Estou disponível para novas oportunidades e colaborações. <br> Entre em contato através de um dos canais abaixo.</p>
+            <div class="social-icons mb-4">
+                 <a href="mailto:ribeirosilva.bruno@gmail.com" target="_blank" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                 <a href="https://www.linkedin.com/in/bruno-ribeiro-silva-a996828b/" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                 <a href="tel:+5561981000608" title="Telefone"><i class="bi bi-telephone-fill"></i></a>
+            </div>
+            <p class="copy">&copy; 2024 Bruno Ribeiro Silva. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        const nav = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('scrolled');
+                nav.classList.add('bg-transparent');
+            }
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        const animatedElements = document.querySelectorAll('.fade-in');
+        animatedElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
