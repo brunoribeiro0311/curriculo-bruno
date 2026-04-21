@@ -237,13 +237,13 @@
         }
 
         /* ========================================================
-           REGRAS EDITORIAIS PARA IMPRESSÃO (MODO 1 PÁGINA)
-           Ajustes agressivos de margin/padding para fit perfecto.
+           REGRAS EDITORIAIS PARA IMPRESSÃO (MODO 1 PÁGINA RIGOROSO)
+           Ajustes matemáticos agressivos para encaixe perfeito.
            ======================================================== */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 0.8cm 1cm; /* Margens físicas da folha reduzidas */
+                margin: 0.5cm 0.8cm; /* Margens físicas da folha reduzidas ao limite seguro */
             }
 
             * {
@@ -252,10 +252,10 @@
                 print-color-adjust: exact !important;
             }
 
-            /* Reset Tipográfico Base para Papel */
+            /* Reset Tipográfico Base para Papel (Economia Vertical Máxima) */
             body {
-                font-size: 9.5pt !important;
-                line-height: 1.3 !important;
+                font-size: 8.5pt !important;
+                line-height: 1.15 !important;
                 background-color: #ffffff !important;
                 color: #000000 !important;
             }
@@ -267,52 +267,68 @@
 
             /* Compressão da Hero Section */
             .hero-section {
-                padding: 15px 0 10px !important;
-                border-bottom: 3px solid var(--pmdf-gold) !important;
+                padding: 10px 0 5px !important;
+                border-bottom: 2px solid var(--pmdf-gold) !important;
             }
-            .hero-title { font-size: 22pt !important; margin-bottom: 0 !important; }
-            .hero-subtitle { font-size: 11pt !important; margin-bottom: 10px !important; }
-            .hero-section .d-flex { margin-bottom: 10px !important; gap: 12px !important; font-size: 8.5pt !important; }
-            .hero-pitch { padding: 8px 12px !important; font-size: 9pt !important; border-left-width: 3px !important; max-width: 100% !important; }
+            .hero-title { font-size: 16pt !important; margin-bottom: 2px !important; }
+            .hero-subtitle { font-size: 9.5pt !important; margin-bottom: 4px !important; }
+            .hero-section .d-flex { margin-bottom: 6px !important; gap: 10px !important; font-size: 8pt !important; }
+            .hero-pitch { padding: 4px 8px !important; font-size: 8pt !important; border-left-width: 3px !important; max-width: 100% !important; margin-bottom: 0 !important; }
 
-            /* Esmagamento de Espaçamentos Globais (Override Bootstrap) */
-            .section-padding { padding: 12px 0 5px !important; }
-            .mt-5 { margin-top: 15px !important; }
-            .mb-5 { margin-bottom: 12px !important; }
-            .mb-4 { margin-bottom: 8px !important; }
-            .g-4, .g-5 { --bs-gutter-y: 10px; --bs-gutter-x: 10px; }
+            /* Esmagamento de Espaçamentos Globais (Override drástico do Bootstrap) */
+            .section-padding { padding: 8px 0 4px !important; }
+            .mt-5 { margin-top: 10px !important; }
+            .mb-5 { margin-bottom: 10px !important; }
+            .mb-4 { margin-bottom: 6px !important; }
+            .pb-3 { padding-bottom: 2px !important; }
             
-            h2.section-title { font-size: 14pt !important; margin-bottom: 12px !important; }
-            .title-line::after { margin: 6px auto 0 !important; height: 2px !important; }
+            h2.section-title { font-size: 12pt !important; margin-bottom: 8px !important; }
+            .title-line::after { margin: 4px auto 0 !important; height: 2px !important; }
 
-            /* Compressão dos Cards de Competências */
+            /* FORÇAR GRELHA: Prevenir colapso de colunas do Bootstrap no papel */
+            .row { display: flex !important; flex-wrap: nowrap !important; gap: 10px !important; margin: 0 !important; }
+            .col-md-6.col-lg-3 { width: 25% !important; flex: 0 0 25% !important; padding: 0 !important; }
+            .col-md-6.list-block { width: 50% !important; flex: 0 0 50% !important; padding: 0 !important; }
+
+            /* Compressão dos Cards de Competências (Ícone e Título na mesma linha) */
             .skill-card { 
-                padding: 10px 12px !important; 
-                border-top-width: 3px !important; 
+                padding: 6px 8px !important; 
+                border-top-width: 2px !important; 
                 box-shadow: none !important; 
                 border-left: 1px solid #eee;
                 border-right: 1px solid #eee;
                 border-bottom: 1px solid #eee;
             }
-            .skill-icon { font-size: 14pt !important; margin-bottom: 6px !important; }
-            .skill-card h3 { font-size: 10pt !important; margin-bottom: 4px !important; }
-            .skill-card p { font-size: 8pt !important; margin-bottom: 0 !important; line-height: 1.2 !important; }
+            .skill-card i { 
+                display: inline-block !important; 
+                font-size: 10pt !important; 
+                margin-bottom: 2px !important; 
+                margin-right: 4px !important; 
+                vertical-align: middle; 
+            }
+            .skill-card h3 { 
+                display: inline-block !important; 
+                font-size: 8.5pt !important; 
+                margin-bottom: 2px !important; 
+                vertical-align: middle; 
+            }
+            .skill-card p { font-size: 7.5pt !important; margin-bottom: 0 !important; line-height: 1.15 !important; }
 
-            /* Compressão da Timeline */
-            .timeline-container::before { left: 8px !important; width: 2px !important; }
-            .timeline-item { padding-left: 24px !important; margin-bottom: 12px !important; }
-            .timeline-dot { left: 3px !important; width: 12px !important; height: 12px !important; border-width: 2px !important; top: 3px !important; }
-            .timeline-date { font-size: 7.5pt !important; padding: 2px 6px !important; margin-bottom: 4px !important; border-left-width: 2px !important; }
-            .timeline-item h3 { font-size: 11pt !important; margin-top: 0 !important; margin-bottom: 2px !important; }
-            .timeline-item h4 { font-size: 8.5pt !important; margin-bottom: 4px !important; }
-            .timeline-item p { font-size: 8.5pt !important; margin-bottom: 4px !important; line-height: 1.2 !important; }
+            /* Compressão da Timeline (Milimétrica) */
+            .timeline-container::before { left: 4px !important; width: 1.5px !important; }
+            .timeline-item { padding-left: 16px !important; margin-bottom: 8px !important; }
+            .timeline-dot { left: 0 !important; width: 10px !important; height: 10px !important; border-width: 2px !important; top: 2px !important; }
+            .timeline-date { font-size: 6.5pt !important; padding: 1px 4px !important; margin-bottom: 2px !important; border-left-width: 2px !important; }
+            .timeline-item h3 { font-size: 9.5pt !important; margin-top: 0 !important; margin-bottom: 0 !important; }
+            .timeline-item h4 { font-size: 7.5pt !important; margin-bottom: 2px !important; }
+            .timeline-item p { font-size: 7.5pt !important; margin-bottom: 1px !important; line-height: 1.15 !important; }
 
             /* Compressão de Formação e Certificações */
-            .list-block h3 { font-size: 12pt !important; margin-bottom: 12px !important; padding-bottom: 4px !important; }
-            .custom-list-item { padding-left: 16px !important; margin-bottom: 10px !important; }
-            .custom-list-item::before { font-size: 7pt !important; top: 2px !important; }
-            .custom-list-item strong { font-size: 9.5pt !important; margin-bottom: 2px !important; }
-            .list-meta { font-size: 8pt !important; padding: 4px 8px !important; margin-top: 2px !important; border-left-width: 2px !important; }
+            .list-block h3 { font-size: 10.5pt !important; margin-bottom: 6px !important; padding-bottom: 2px !important; }
+            .custom-list-item { padding-left: 12px !important; margin-bottom: 6px !important; }
+            .custom-list-item::before { font-size: 5pt !important; top: 3px !important; }
+            .custom-list-item strong { font-size: 8pt !important; margin-bottom: 1px !important; }
+            .list-meta { font-size: 7pt !important; padding: 2px 4px !important; margin-top: 1px !important; border-left-width: 2px !important; }
 
             /* Prevenção rigorosa de Quebra de Página no meio de blocos */
             .skill-card, .timeline-item, .custom-list-item { 
