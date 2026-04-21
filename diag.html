@@ -237,13 +237,13 @@
         }
 
         /* ========================================================
-           REGRAS EDITORIAIS PARA IMPRESSÃO (MODO 1 PÁGINA RIGOROSO)
-           Ajustes matemáticos agressivos para encaixe perfeito.
+           REGRAS EDITORIAIS PARA IMPRESSÃO (MODO 1 PÁGINA COM RESPIRO)
+           Balanceamento entre legibilidade tipográfica e contenção.
            ======================================================== */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 0.5cm 0.8cm; /* Margens físicas da folha reduzidas ao limite seguro */
+                margin: 1.2cm; /* Retorno de margens adequadas para respiro visual */
             }
 
             * {
@@ -252,12 +252,13 @@
                 print-color-adjust: exact !important;
             }
 
-            /* Reset Tipográfico Base para Papel (Economia Vertical Máxima) */
+            /* Restauração da Legibilidade Base (Kerning e Leading) */
             body {
-                font-size: 8.5pt !important;
-                line-height: 1.15 !important;
+                font-size: 9.5pt !important;
+                line-height: 1.35 !important; /* Entrelinha editorial padrão */
                 background-color: #ffffff !important;
-                color: #000000 !important;
+                color: #1a202c !important;
+                letter-spacing: 0.1px !important; /* Correção do 'kerning atropelado' */
             }
 
             /* Ocultação de elementos não imprimíveis */
@@ -265,78 +266,73 @@
                 display: none !important;
             }
 
-            /* Compressão da Hero Section */
+            /* Hero Section com mais ar */
             .hero-section {
-                padding: 10px 0 5px !important;
-                border-bottom: 2px solid var(--pmdf-gold) !important;
+                padding: 15px 0 15px !important;
+                border-bottom: 3px solid var(--pmdf-gold) !important;
             }
-            .hero-title { font-size: 16pt !important; margin-bottom: 2px !important; }
-            .hero-subtitle { font-size: 9.5pt !important; margin-bottom: 4px !important; }
-            .hero-section .d-flex { margin-bottom: 6px !important; gap: 10px !important; font-size: 8pt !important; }
-            .hero-pitch { padding: 4px 8px !important; font-size: 8pt !important; border-left-width: 3px !important; max-width: 100% !important; margin-bottom: 0 !important; }
+            .hero-title { font-size: 20pt !important; margin-bottom: 4px !important; letter-spacing: -0.5px !important; }
+            .hero-subtitle { font-size: 10.5pt !important; margin-bottom: 8px !important; }
+            .hero-section .d-flex { margin-bottom: 12px !important; gap: 15px !important; font-size: 8.5pt !important; }
+            .hero-pitch { padding: 8px 12px !important; font-size: 9pt !important; border-left-width: 3px !important; max-width: 100% !important; margin-bottom: 0 !important; line-height: 1.4 !important; }
 
-            /* Esmagamento de Espaçamentos Globais (Override drástico do Bootstrap) */
-            .section-padding { padding: 8px 0 4px !important; }
-            .mt-5 { margin-top: 10px !important; }
-            .mb-5 { margin-bottom: 10px !important; }
-            .mb-4 { margin-bottom: 6px !important; }
-            .pb-3 { padding-bottom: 2px !important; }
+            /* Espaçamentos Globais Controlados */
+            .section-padding { padding: 15px 0 8px !important; }
+            .mt-5 { margin-top: 15px !important; }
+            .mb-5 { margin-bottom: 15px !important; }
+            .mb-4 { margin-bottom: 10px !important; }
             
-            h2.section-title { font-size: 12pt !important; margin-bottom: 8px !important; }
-            .title-line::after { margin: 4px auto 0 !important; height: 2px !important; }
+            h2.section-title { font-size: 13pt !important; margin-bottom: 12px !important; letter-spacing: 0.5px !important; }
+            .title-line::after { margin: 6px auto 0 !important; height: 2px !important; }
 
-            /* FORÇAR GRELHA: Prevenir colapso de colunas do Bootstrap no papel */
-            .row { display: flex !important; flex-wrap: nowrap !important; gap: 10px !important; margin: 0 !important; }
+            /* FORÇAR GRELHA LADO A LADO */
+            .row { display: flex !important; flex-wrap: nowrap !important; gap: 15px !important; margin: 0 !important; }
             .col-md-6.col-lg-3 { width: 25% !important; flex: 0 0 25% !important; padding: 0 !important; }
             .col-md-6.list-block { width: 50% !important; flex: 0 0 50% !important; padding: 0 !important; }
 
-            /* Compressão dos Cards de Competências (Ícone e Título na mesma linha) */
+            /* Cards de Competências (Ícone em bloco para melhorar hierarquia e respiro) */
             .skill-card { 
-                padding: 6px 8px !important; 
-                border-top-width: 2px !important; 
+                padding: 10px 12px !important; 
+                border-top-width: 3px !important; 
                 box-shadow: none !important; 
-                border-left: 1px solid #eee;
-                border-right: 1px solid #eee;
-                border-bottom: 1px solid #eee;
+                border-left: 1px solid #e2e8f0;
+                border-right: 1px solid #e2e8f0;
+                border-bottom: 1px solid #e2e8f0;
             }
             .skill-card i { 
-                display: inline-block !important; 
-                font-size: 10pt !important; 
-                margin-bottom: 2px !important; 
-                margin-right: 4px !important; 
-                vertical-align: middle; 
+                display: block !important; /* Retorna o ícone para cima do texto */
+                font-size: 13pt !important; 
+                margin-bottom: 6px !important; 
             }
             .skill-card h3 { 
-                display: inline-block !important; 
-                font-size: 8.5pt !important; 
-                margin-bottom: 2px !important; 
-                vertical-align: middle; 
+                display: block !important; 
+                font-size: 9.5pt !important; 
+                margin-bottom: 4px !important; 
             }
-            .skill-card p { font-size: 7.5pt !important; margin-bottom: 0 !important; line-height: 1.15 !important; }
+            .skill-card p { font-size: 8pt !important; margin-bottom: 0 !important; line-height: 1.35 !important; }
 
-            /* Compressão da Timeline (Milimétrica) */
-            .timeline-container::before { left: 4px !important; width: 1.5px !important; }
-            .timeline-item { padding-left: 16px !important; margin-bottom: 8px !important; }
-            .timeline-dot { left: 0 !important; width: 10px !important; height: 10px !important; border-width: 2px !important; top: 2px !important; }
-            .timeline-date { font-size: 6.5pt !important; padding: 1px 4px !important; margin-bottom: 2px !important; border-left-width: 2px !important; }
-            .timeline-item h3 { font-size: 9.5pt !important; margin-top: 0 !important; margin-bottom: 0 !important; }
-            .timeline-item h4 { font-size: 7.5pt !important; margin-bottom: 2px !important; }
-            .timeline-item p { font-size: 7.5pt !important; margin-bottom: 1px !important; line-height: 1.15 !important; }
+            /* Timeline com espaçamento adequado */
+            .timeline-container::before { left: 6px !important; width: 2px !important; }
+            .timeline-item { padding-left: 20px !important; margin-bottom: 14px !important; }
+            .timeline-dot { left: 1px !important; width: 12px !important; height: 12px !important; border-width: 2px !important; top: 4px !important; }
+            .timeline-date { font-size: 7.5pt !important; padding: 2px 6px !important; margin-bottom: 4px !important; border-left-width: 2px !important; }
+            .timeline-item h3 { font-size: 10.5pt !important; margin-top: 0 !important; margin-bottom: 2px !important; }
+            .timeline-item h4 { font-size: 8.5pt !important; margin-bottom: 4px !important; }
+            .timeline-item p { font-size: 8.5pt !important; margin-bottom: 2px !important; line-height: 1.35 !important; }
 
-            /* Compressão de Formação e Certificações */
-            .list-block h3 { font-size: 10.5pt !important; margin-bottom: 6px !important; padding-bottom: 2px !important; }
-            .custom-list-item { padding-left: 12px !important; margin-bottom: 6px !important; }
-            .custom-list-item::before { font-size: 5pt !important; top: 3px !important; }
-            .custom-list-item strong { font-size: 8pt !important; margin-bottom: 1px !important; }
-            .list-meta { font-size: 7pt !important; padding: 2px 4px !important; margin-top: 1px !important; border-left-width: 2px !important; }
+            /* Formação e Certificações */
+            .list-block h3 { font-size: 11.5pt !important; margin-bottom: 10px !important; padding-bottom: 4px !important; }
+            .custom-list-item { padding-left: 16px !important; margin-bottom: 12px !important; }
+            .custom-list-item::before { font-size: 6pt !important; top: 3px !important; }
+            .custom-list-item strong { font-size: 9pt !important; margin-bottom: 2px !important; }
+            .list-meta { font-size: 8pt !important; padding: 4px 6px !important; margin-top: 2px !important; border-left-width: 2px !important; }
 
-            /* Prevenção rigorosa de Quebra de Página no meio de blocos */
+            /* Prevenção de Quebra de Página */
             .skill-card, .timeline-item, .custom-list-item { 
                 page-break-inside: avoid !important; 
                 break-inside: avoid !important; 
             }
 
-            /* Remover as marcações automáticas dos browsers em links */
             a[href]::after { content: none !important; }
         }
     </style>
