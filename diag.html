@@ -237,13 +237,13 @@
         }
 
         /* ========================================================
-           REGRAS EDITORIAIS PARA IMPRESSÃO (MODO 1 PÁGINA COM RESPIRO)
-           Balanceamento entre legibilidade tipográfica e contenção.
+           REGRAS EDITORIAIS PARA IMPRESSÃO (PÁGINA ÚNICA GARANTIDA)
+           Ajustes finais para evitar qualquer vazamento.
            ======================================================== */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 1.2cm; /* Retorno de margens adequadas para respiro visual */
+                margin: 0.8cm 1cm; /* Margens otimizadas para garantir espaço no fundo */
             }
 
             * {
@@ -252,13 +252,13 @@
                 print-color-adjust: exact !important;
             }
 
-            /* Restauração da Legibilidade Base (Kerning e Leading) */
+            /* Restauração da Legibilidade Base, mas com leading levemente ajustado */
             body {
                 font-size: 9.5pt !important;
-                line-height: 1.35 !important; /* Entrelinha editorial padrão */
+                line-height: 1.25 !important; /* Entrelinha reduzida de 1.35 para 1.25 */
                 background-color: #ffffff !important;
                 color: #1a202c !important;
-                letter-spacing: 0.1px !important; /* Correção do 'kerning atropelado' */
+                letter-spacing: 0.1px !important;
             }
 
             /* Ocultação de elementos não imprimíveis */
@@ -266,33 +266,33 @@
                 display: none !important;
             }
 
-            /* Hero Section com mais ar */
+            /* Hero Section mais fina */
             .hero-section {
-                padding: 15px 0 15px !important;
+                padding: 10px 0 10px !important;
                 border-bottom: 3px solid var(--pmdf-gold) !important;
             }
-            .hero-title { font-size: 20pt !important; margin-bottom: 4px !important; letter-spacing: -0.5px !important; }
-            .hero-subtitle { font-size: 10.5pt !important; margin-bottom: 8px !important; }
-            .hero-section .d-flex { margin-bottom: 12px !important; gap: 15px !important; font-size: 8.5pt !important; }
-            .hero-pitch { padding: 8px 12px !important; font-size: 9pt !important; border-left-width: 3px !important; max-width: 100% !important; margin-bottom: 0 !important; line-height: 1.4 !important; }
+            .hero-title { font-size: 18pt !important; margin-bottom: 2px !important; letter-spacing: -0.5px !important; }
+            .hero-subtitle { font-size: 10pt !important; margin-bottom: 6px !important; }
+            .hero-section .d-flex { margin-bottom: 10px !important; gap: 12px !important; font-size: 8.5pt !important; }
+            .hero-pitch { padding: 6px 10px !important; font-size: 8.5pt !important; border-left-width: 3px !important; max-width: 100% !important; margin-bottom: 0 !important; line-height: 1.3 !important; }
 
             /* Espaçamentos Globais Controlados */
-            .section-padding { padding: 15px 0 8px !important; }
-            .mt-5 { margin-top: 15px !important; }
-            .mb-5 { margin-bottom: 15px !important; }
-            .mb-4 { margin-bottom: 10px !important; }
+            .section-padding { padding: 10px 0 5px !important; }
+            .mt-5 { margin-top: 10px !important; }
+            .mb-5 { margin-bottom: 10px !important; }
+            .mb-4 { margin-bottom: 8px !important; }
             
-            h2.section-title { font-size: 13pt !important; margin-bottom: 12px !important; letter-spacing: 0.5px !important; }
-            .title-line::after { margin: 6px auto 0 !important; height: 2px !important; }
+            h2.section-title { font-size: 12pt !important; margin-bottom: 10px !important; letter-spacing: 0.5px !important; }
+            .title-line::after { margin: 4px auto 0 !important; height: 2px !important; }
 
             /* FORÇAR GRELHA LADO A LADO */
-            .row { display: flex !important; flex-wrap: nowrap !important; gap: 15px !important; margin: 0 !important; }
+            .row { display: flex !important; flex-wrap: nowrap !important; gap: 12px !important; margin: 0 !important; }
             .col-md-6.col-lg-3 { width: 25% !important; flex: 0 0 25% !important; padding: 0 !important; }
             .col-md-6.list-block { width: 50% !important; flex: 0 0 50% !important; padding: 0 !important; }
 
-            /* Cards de Competências (Ícone em bloco para melhorar hierarquia e respiro) */
+            /* Cards de Competências */
             .skill-card { 
-                padding: 10px 12px !important; 
+                padding: 8px 10px !important; 
                 border-top-width: 3px !important; 
                 box-shadow: none !important; 
                 border-left: 1px solid #e2e8f0;
@@ -300,32 +300,32 @@
                 border-bottom: 1px solid #e2e8f0;
             }
             .skill-card i { 
-                display: block !important; /* Retorna o ícone para cima do texto */
-                font-size: 13pt !important; 
-                margin-bottom: 6px !important; 
+                display: block !important;
+                font-size: 12pt !important; 
+                margin-bottom: 4px !important; 
             }
             .skill-card h3 { 
                 display: block !important; 
-                font-size: 9.5pt !important; 
-                margin-bottom: 4px !important; 
+                font-size: 9pt !important; 
+                margin-bottom: 2px !important; 
             }
-            .skill-card p { font-size: 8pt !important; margin-bottom: 0 !important; line-height: 1.35 !important; }
+            .skill-card p { font-size: 7.5pt !important; margin-bottom: 0 !important; line-height: 1.25 !important; }
 
-            /* Timeline com espaçamento adequado */
+            /* Timeline */
             .timeline-container::before { left: 6px !important; width: 2px !important; }
-            .timeline-item { padding-left: 20px !important; margin-bottom: 14px !important; }
+            .timeline-item { padding-left: 20px !important; margin-bottom: 10px !important; }
             .timeline-dot { left: 1px !important; width: 12px !important; height: 12px !important; border-width: 2px !important; top: 4px !important; }
-            .timeline-date { font-size: 7.5pt !important; padding: 2px 6px !important; margin-bottom: 4px !important; border-left-width: 2px !important; }
-            .timeline-item h3 { font-size: 10.5pt !important; margin-top: 0 !important; margin-bottom: 2px !important; }
-            .timeline-item h4 { font-size: 8.5pt !important; margin-bottom: 4px !important; }
-            .timeline-item p { font-size: 8.5pt !important; margin-bottom: 2px !important; line-height: 1.35 !important; }
+            .timeline-date { font-size: 7pt !important; padding: 1px 6px !important; margin-bottom: 2px !important; border-left-width: 2px !important; }
+            .timeline-item h3 { font-size: 10pt !important; margin-top: 0 !important; margin-bottom: 1px !important; }
+            .timeline-item h4 { font-size: 8pt !important; margin-bottom: 2px !important; }
+            .timeline-item p { font-size: 8pt !important; margin-bottom: 2px !important; line-height: 1.25 !important; }
 
-            /* Formação e Certificações */
-            .list-block h3 { font-size: 11.5pt !important; margin-bottom: 10px !important; padding-bottom: 4px !important; }
-            .custom-list-item { padding-left: 16px !important; margin-bottom: 12px !important; }
+            /* Formação e Certificações (Compressão Maior para Evitar Quebra) */
+            .list-block h3 { font-size: 10.5pt !important; margin-bottom: 8px !important; padding-bottom: 2px !important; }
+            .custom-list-item { padding-left: 14px !important; margin-bottom: 8px !important; }
             .custom-list-item::before { font-size: 6pt !important; top: 3px !important; }
-            .custom-list-item strong { font-size: 9pt !important; margin-bottom: 2px !important; }
-            .list-meta { font-size: 8pt !important; padding: 4px 6px !important; margin-top: 2px !important; border-left-width: 2px !important; }
+            .custom-list-item strong { font-size: 8.5pt !important; margin-bottom: 1px !important; }
+            .list-meta { font-size: 7.5pt !important; padding: 2px 4px !important; margin-top: 1px !important; border-left-width: 2px !important; }
 
             /* Prevenção de Quebra de Página */
             .skill-card, .timeline-item, .custom-list-item { 
