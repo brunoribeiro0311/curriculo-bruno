@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno Ribeiro Silva - Diagramador & Designer Gráfico</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts: Tipografia Institucional e Editorial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Variáveis RIV PMDF (Regulamento de Identidade Visual) */
+        :root {
+            --pmdf-blue: #0b2341;     /* Azul Noturno - Autoridade */
+            --pmdf-gold: #cfa83b;     /* Amarelo Ouro - Prestígio/Destaque */
+            --pmdf-red: #cc1e1e;      /* Vermelho Tomato - Acentos */
+            --text-main: #2d3748;
+            --text-muted: #4a5568;
+            --bg-light: #f4f6f8;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            font-family: 'Roboto', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Sobrescrita de Tipografia Bootstrap */
+        h1, h2, h3, h4, h5, h6, .font-montserrat {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--pmdf-blue);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            background-color: var(--pmdf-blue);
+            border-bottom: 5px solid var(--pmdf-gold);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0 60px;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(135deg, rgba(207, 168, 59, 0.05) 0%, rgba(11, 35, 65, 0.95) 100%),
+                        url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.05)"/></svg>');
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            color: var(--pmdf-gold);
+            letter-spacing: 1px;
+        }
+
+        .hero-pitch {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--pmdf-red);
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .contact-icon {
+            color: var(--pmdf-gold);
+            width: 24px;
+            text-align: center;
+        }
+
+        /* --- UTILITÁRIOS CUSTOMIZADOS --- */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .title-line::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--pmdf-blue) 50%, var(--pmdf-gold) 50%);
+            margin: 16px auto 0;
+        }
+
+        /* --- CARDS DE COMPETÊNCIAS --- */
+        .skill-card {
+            border-top: 4px solid var(--pmdf-blue);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-top-color: var(--pmdf-gold);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .skill-icon {
+            font-size: 2.8rem;
+            color: var(--pmdf-gold);
+            transition: color 0.3s ease;
+        }
+
+        .skill-card:hover .skill-icon {
+            color: var(--pmdf-red);
+        }
+
+        /* --- TIMELINE CUSTOMIZADA --- */
+        .timeline-container {
+            position: relative;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; left: 24px;
+            width: 3px;
+            background-color: #cbd5e0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 12px;
+            top: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: var(--pmdf-gold);
+            border: 5px solid #ffffff;
+            box-shadow: 0 0 0 2px var(--pmdf-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.2);
+            background-color: var(--pmdf-red);
+        }
+
+        .timeline-date {
+            color: var(--pmdf-blue);
+            background: var(--bg-light);
+            border-left: 3px solid var(--pmdf-gold);
+        }
+
+        /* --- LISTAS DE FORMAÇÃO --- */
+        .list-block h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 40px;
+            height: 2px;
+            background-color: var(--pmdf-red);
+        }
+
+        .custom-list-item {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .custom-list-item::before {
+            content: '\f02e'; /* Bookmark icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--pmdf-gold);
+            font-size: 1.1rem;
+        }
+
+        .list-meta {
+            border-left: 2px solid #cbd5e0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--pmdf-blue);
+            border-top: 4px solid var(--pmdf-gold);
+        }
+
+        /* Ajustes Mobile específicos para a Timeline */
+        @media (max-width: 768px) {
+            .timeline-container::before { left: 16px; }
+            .timeline-item { padding-left: 48px; }
+            .timeline-dot { left: 5px; width: 22px; height: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO / HERO (Bootstrap Classes: py, container, text-white, d-flex, gap, etc.) -->
+    <header class="hero-section text-white">
+        <div class="container hero-content">
+            <h1 class="hero-title fw-bold text-uppercase mb-2 text-white">Bruno Ribeiro Silva</h1>
+            <h2 class="hero-subtitle fs-4 fw-semibold mb-4">Diagramador & Designer Gráfico</h2>
+            
+            <div class="d-flex flex-wrap gap-4 mb-5 fw-medium">
+                <div><i class="fa-solid fa-phone contact-icon"></i> +55 61 98100-0608</div>
+                <div><i class="fa-solid fa-envelope contact-icon"></i> ribeirosilva.bruno@gmail.com</div>
+                <div><i class="fa-brands fa-linkedin contact-icon"></i> linkedin.com/in/bruno-ribeiro-silva-a996828b</div>
+            </div>
+            
+            <div class="hero-pitch p-4 shadow-sm text-light">
+                "Foco rigoroso em Editoração, Design Institucional e Acessibilidade Visual. 
+                Comprovada adaptação de layouts a diretrizes visuais estritas em ambientes educacionais e de segurança pública."
+            </div>
+        </div>
+    </header>
+
+    <!-- COMPETÊNCIAS (Bootstrap Grid: row, col-md-6, col-lg-3, g-4) -->
+    <section id="competencias" class="section-padding">
+        <div class="container">
+            <h2 class="section-title title-line">Competências Técnicas</h2>
+            
+            <div class="row g-4 mt-2">
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-card bg-white p-4 h-100 rounded-1 shadow-sm">
+                        <i class="fa-solid fa-pen-nib skill-icon mb-4"></i>
+                        <h3 class="fs-5 fw-bold mb-3">Editoração e Design</h3>
+                        <p class="text-muted mb-0">Domínio avançado do pacote Adobe: InDesign, Illustrator, Photoshop e Acrobat Pro. Preparação técnica de ficheiros para impressão corporativa e web.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-card bg-white p-4 h-100 rounded-1 shadow-sm">
+                        <i class="fa-solid fa-ruler-combined skill-icon mb-4"></i>
+                        <h3 class="fs-5 fw-bold mb-3">Diagramação Editorial</h3>
+                        <p class="text-muted mb-0">Gestão impecável de grids, tipografia institucional, fechamento de ficheiros (sangria, marca de corte, CMYK) e hierarquia visual rigorosa.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-card bg-white p-4 h-100 rounded-1 shadow-sm">
+                        <i class="fa-solid fa-universal-access skill-icon mb-4"></i>
+                        <h3 class="fs-5 fw-bold mb-3">Plataformas e Acesso</h3>
+                        <p class="text-muted mb-0">Assessoramento gráfico em Open Journal Systems (OJS) e design de interfaces (Moodle), garantindo regras rígidas de contraste e acessibilidade.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-card bg-white p-4 h-100 rounded-1 shadow-sm">
+                        <i class="fa-solid fa-clipboard-check skill-icon mb-4"></i>
+                        <h3 class="fs-5 fw-bold mb-3">Perfil Institucional</h3>
+                        <p class="text-muted mb-0">Comunicação objetiva, rigor na submissão a manuais de identidade corporativa (RIV), flexibilidade para revisões e foco no calendário de entrega.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIÊNCIA PROFISSIONAL -->
+    <section id="experiencia" class="section-padding bg-white border-top border-bottom">
+        <div class="container">
+            <h2 class="section-title title-line">Experiência Profissional</h2>
+            
+            <div class="timeline-container mt-5">
+                
+                <div class="timeline-item mb-5">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date font-montserrat fw-bold text-uppercase px-3 py-1 rounded-1 small d-inline-block mb-3">Julho 2020 - Presente</span>
+                    <div>
+                        <h3 class="fs-4 fw-bold mb-1">Assessor Técnico & Designer Instrucional</h3>
+                        <h4 class="fs-6 text-muted font-monospace mb-3">SEAD / DEC - PMDF</h4>
+                        <p>Responsável pelo assessoramento técnico e execução da arte gráfica da <em>Revista Ciência & Polícia (RCP)</em>, incluindo gestão visual do sistema editorial OJS.</p>
+                        <p class="mb-0">Atuação como Designer Instrucional e gestor visual do portal <strong><a href="https://virtual.iscp.edu.br/" target="_blank" style="color: var(--pmdf-gold); text-decoration: none; border-bottom: 1px dotted var(--pmdf-gold);">virtual.iscp.edu.br</a></strong>. Liderança no desenvolvimento de layouts, arquitetura da informação pedagógica e adaptação visual do Ambiente Virtual (Moodle), garantindo usabilidade e acessibilidade para 12.000 polícias militares.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item mb-5">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date font-montserrat fw-bold text-uppercase px-3 py-1 rounded-1 small d-inline-block mb-3">Abril 2022 - Agosto 2022</span>
+                    <div>
+                        <h3 class="fs-4 fw-bold mb-1">Designer Gráfico</h3>
+                        <h4 class="fs-6 text-muted font-monospace mb-3">ArqueoProject Projetos e Pesquisas</h4>
+                        <p class="mb-0">Criação e diagramação rigorosa de peças gráficas, cartilhas instrucionais e materiais de apoio tático/técnico para utilização operacional em campo.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item mb-5">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date font-montserrat fw-bold text-uppercase px-3 py-1 rounded-1 small d-inline-block mb-3">Janeiro 2017 - Dezembro 2017</span>
+                    <div>
+                        <h3 class="fs-4 fw-bold mb-1">Professor de Ensino Superior</h3>
+                        <h4 class="fs-6 text-muted font-monospace mb-3">Faculdade Mauá de Brasília</h4>
+                        <p class="mb-0">Lecionou disciplinas focadas em estética visual, composição de cor e Arte Digital, cobrando alto rigor académico no uso de ferramentas da indústria gráfica.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date font-montserrat fw-bold text-uppercase px-3 py-1 rounded-1 small d-inline-block mb-3">Novembro 2015 - Janeiro 2016</span>
+                    <div>
+                        <h3 class="fs-4 fw-bold mb-1">Artista Gráfico</h3>
+                        <h4 class="fs-6 text-muted font-monospace mb-3">Produtiva Soluções em Gestão (Produtiva TI)</h4>
+                        <p class="mb-0">Desenvolvimento e adaptação visual de layouts interativos para Ensino a Distância (EAD), formatando o conteúdo pedagógico para máxima retenção de leitura.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMAÇÃO E CERTIFICAÇÕES (Bootstrap Grid: row, col-md-6) -->
+    <section id="formacao" class="section-padding">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Coluna 1 -->
+                <div class="col-md-6 list-block">
+                    <h3 class="fs-4 fw-bold pb-3 border-bottom position-relative mb-4">Formação Académica</h3>
+                    
+                    <div class="custom-list-item mb-4">
+                        <strong class="font-montserrat fs-5 text-dark">Tecnólogo em Análise e Desenv. de Sistemas</strong>
+                        <span class="d-block text-muted small bg-white p-2 mt-2 list-meta shadow-sm">Gran Centro Universitário | 2025 – Presente</span>
+                    </div>
+                    
+                    <div class="custom-list-item mb-4">
+                        <strong class="font-montserrat fs-5 text-dark">Pós-Graduação em Animação e Arte Digital</strong>
+                        <span class="d-block text-muted small bg-white p-2 mt-2 list-meta shadow-sm">Instituto de Ensino Superior de Brasília | Maio 2016 – Junho 2017</span>
+                    </div>
+                    
+                    <div class="custom-list-item">
+                        <strong class="font-montserrat fs-5 text-dark">Tecnólogo em Jogos Digitais (Programação Visual)</strong>
+                        <span class="d-block text-muted small bg-white p-2 mt-2 list-meta shadow-sm">Instituto de Ensino Superior de Brasília | Janeiro 2012 – Julho 2015</span>
+                    </div>
+                </div>
+
+                <!-- Coluna 2 -->
+                <div class="col-md-6 list-block">
+                    <h3 class="fs-4 fw-bold pb-3 border-bottom position-relative mb-4">Certificações e Referências</h3>
+                    
+                    <div class="custom-list-item mb-4">
+                        <strong class="font-montserrat fs-5 text-dark">Certificado de Assessoramento Gráfico (2024)</strong>
+                        <span class="d-block text-muted small bg-white p-2 mt-2 list-meta shadow-sm">Emitido pelo DEC/PMDF. Atesta o papel fundamental na arte gráfica e gestão do sistema OJS na edição especial da <em>Revista Ciência & Polícia</em>.</span>
+                    </div>
+                    
+                    <div class="custom-list-item">
+                        <strong class="font-montserrat fs-5 text-dark">Carta de Recomendação Oficial (2021)</strong>
+                        <span class="d-block text-muted small bg-white p-2 mt-2 list-meta shadow-sm">Emitida pela Chefia de EAD do DEC/PMDF. Certifica a excelência e o respeito a manuais de identidade no desenvolvimento do layout do AVA corporativo.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Bootstrap utility classes) -->
+    <footer class="py-4 text-white text-center">
+        <div class="container">
+            <p class="mb-0 opacity-75 small">&copy; 2026 Bruno Ribeiro Silva. Portfólio otimizado e estruturado sob os preceitos do RIV/PMDF com framework Bootstrap 5.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
