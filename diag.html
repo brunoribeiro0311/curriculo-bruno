@@ -85,6 +85,32 @@
             width: 24px;
             text-align: center;
         }
+        
+        .contact-link {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: var(--pmdf-gold);
+        }
+
+        /* Botão de Impressão Customizado */
+        .btn-print {
+            border: 2px solid var(--pmdf-gold);
+            color: var(--pmdf-gold);
+            background: transparent;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-print:hover {
+            background: var(--pmdf-gold);
+            color: var(--pmdf-blue);
+        }
 
         /* --- UTILITÁRIOS CUSTOMIZADOS --- */
         .section-padding {
@@ -209,6 +235,52 @@
             .timeline-item { padding-left: 48px; }
             .timeline-dot { left: 5px; width: 22px; height: 22px; }
         }
+
+        /* ========================================================
+           REGRAS EDITORIAIS PARA IMPRESSÃO (CRÍTICO PARA O CARGO)
+           ======================================================== */
+        @media print {
+            /* Força a impressão das cores de fundo (Identidade PMDF) */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Oculta botões e elementos interativos no papel */
+            .d-print-none {
+                display: none !important;
+            }
+
+            /* Ajustes de espaçamento para caber melhor na folha A4 */
+            .hero-section {
+                padding: 40px 0 30px !important;
+            }
+
+            .section-padding {
+                padding: 30px 0 !important;
+            }
+
+            /* Prevenção de "Quebra de Página" no meio de elementos (Grid e Timeline) */
+            .skill-card, .timeline-item, .custom-list-item {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            h2.section-title {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+
+            /* Remove as URLs em feio que os browsers adicionam nos links impressos */
+            a[href]::after {
+                content: none !important;
+            }
+            
+            body {
+                font-size: 11pt;
+            }
+        }
     </style>
 </head>
 <body>
@@ -219,11 +291,17 @@
             <h1 class="hero-title fw-bold text-uppercase mb-2 text-white">Bruno Ribeiro Silva</h1>
             <h2 class="hero-subtitle fs-4 fw-semibold mb-4">Diagramador & Designer Gráfico</h2>
             
-            <div class="d-flex flex-wrap gap-4 mb-5 fw-medium">
+            <div class="d-flex flex-wrap gap-4 mb-4 fw-medium">
                 <div><i class="fa-solid fa-phone contact-icon"></i> +55 61 98100-0608</div>
-                <div><i class="fa-solid fa-envelope contact-icon"></i> ribeirosilva.bruno@gmail.com</div>
-                <div><i class="fa-brands fa-linkedin contact-icon"></i> linkedin.com/in/bruno-ribeiro-silva-a996828b</div>
+                <div><a href="mailto:ribeirosilva.bruno@gmail.com" class="contact-link"><i class="fa-solid fa-envelope contact-icon"></i> ribeirosilva.bruno@gmail.com</a></div>
+                <div><a href="https://www.linkedin.com/in/bruno-ribeiro-silva-a996828b" target="_blank" class="contact-link"><i class="fa-brands fa-linkedin contact-icon"></i> LinkedIn</a></div>
+                <div><a href="http://lattes.cnpq.br/1735226777615513" target="_blank" class="contact-link"><i class="fa-solid fa-graduation-cap contact-icon"></i> Currículo Lattes</a></div>
             </div>
+
+            <!-- Botão de Impressão (Oculto na impressão via d-print-none) -->
+            <button onclick="window.print()" class="btn-print d-print-none mb-4" aria-label="Imprimir Currículo ou Salvar como PDF">
+                <i class="fa-solid fa-file-pdf me-2"></i> Gerar PDF / Imprimir
+            </button>
             
             <div class="hero-pitch p-4 shadow-sm text-light">
                 "Foco rigoroso em Editoração, Design Institucional e Acessibilidade Visual. 
@@ -305,7 +383,7 @@
                     <div class="timeline-dot"></div>
                     <span class="timeline-date font-montserrat fw-bold text-uppercase px-3 py-1 rounded-1 small d-inline-block mb-3">Janeiro 2017 - Dezembro 2017</span>
                     <div>
-                        <h3 class="fs-4 fw-bold mb-1">Professor de Ensino Superior</h3>
+                        <h3 class="fs-4 fw-bold mb-1">Professor de Arte Digital / Ensino Superior</h3>
                         <h4 class="fs-6 text-muted font-monospace mb-3">Faculdade Mauá de Brasília</h4>
                         <p class="mb-0">Lecionou disciplinas focadas em estética visual, composição de cor e Arte Digital, cobrando alto rigor académico no uso de ferramentas da indústria gráfica.</p>
                     </div>
@@ -378,7 +456,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-4 text-white text-center">
+    <footer class="py-4 text-white text-center d-print-none">
         <div class="container">
             <p class="mb-0 opacity-75 small">&copy; 2026 Bruno Ribeiro Silva. Portfólio curado e estruturado sob os preceitos do RIV/PMDF.</p>
         </div>
